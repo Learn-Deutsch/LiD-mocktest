@@ -1,4 +1,4 @@
-const questions = [
+window.questions = [
   {
     "id": "Q001",
     "text": "In Deutschland dürfen Menschen offen etwas gegen die Regierung sagen, weil …",
