@@ -1,6 +1,5 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-  let questions = [];
   let currentIndex = 0;
   let score = 0;
   let selectedQuestions = [];
@@ -10,19 +9,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!username) return alert("Please enter your name");
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("quiz-container").style.display = "block";
-    loadQuiz();
+
+    if (!window.questions || !Array.isArray(window.questions)) {
+      alert("Failed to load questions.");
+      return;
+    }
+
+    selectedQuestions = shuffle(window.questions).slice(0, 30);
+    showQuestion();
   }
 
   window.startQuiz = startQuiz;
-
-  function loadQuiz() {
-    fetch("questions.js").then(res => res.text()).then(js => {
-      eval(js);
-      questions = window.questions;
-      selectedQuestions = shuffle(questions).slice(0, 30);
-      showQuestion();
-    });
-  }
 
   function showQuestion() {
     const container = document.getElementById("quiz-container");
