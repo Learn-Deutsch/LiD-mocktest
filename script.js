@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadQuiz() {
     fetch("questions.js").then(res => res.text()).then(js => {
       eval(js);
+      questions = window.questions;
       selectedQuestions = shuffle(questions).slice(0, 30);
       showQuestion();
     });
