@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leben in Deutschland Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <h1>Leben in Deutschland Quiz</h1>
+    <div id="start-screen">
+      <input type="text" id="username" placeholder="Enter your name" />
+      <button onclick="startQuiz()">Start Quiz</button>
+    </div>
+    <div id="quiz-container" style="display: none;"></div>
+    <div id="result-screen" style="display: none;">
+      <h2>Quiz Completed</h2>
+      <p id="score-display"></p>
+      <button onclick="location.reload()">Restart</button>
+    </div>
+  </div>
+  <script src="questions.js"></script>
+  <script src="answers.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
