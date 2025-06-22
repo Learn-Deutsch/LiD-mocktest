@@ -122,54 +122,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  
-function submitQuiz() {
+  function submitQuiz() {
     quizSubmitted = true;
     clearInterval(timerInterval);
     document.getElementById("quiz-container").style.display = "none";
     let finalScore = calculateScore();
     let html = `<h2>Quiz Completed</h2><p>Your score: ${finalScore} / 30</p>`;
     html += `<h3>Review of All Questions:</h3><ul style="list-style:none;padding-left:0;">`;
+
     selectedQuestions.forEach((q, idx) => {
       const userAns = userAnswers[q.id];
       const correctAns = correctAnswers[q.id];
       html += `<li><strong>Q${idx + 1}:</strong> ${q.text}<br>`;
       if (q.image) {
-        html += `<img src="${q.image}" alt="Fragebild" style="max-width:100%;height:auto;"><br>`;
+        html += `<img src="${q.image}" alt="Bild" style="max-width:100%;height:auto;"><br>`;
       }
       html += `<ul>`;
-      if (Array.isArray(q.options)) {
-        q.options.forEach(opt => {
-          let color = "";
-          if (userAns === opt.label && opt.label === correctAns) {
-            color = "green";
-          } else if (userAns === opt.label && opt.label !== correctAns) {
-            color = "red";
-          } else if (userAns !== opt.label && opt.label === correctAns) {
-            color = "green";
-          }
-          html += `<li style="color:${color}">${opt.label}: ${opt.text}</li>`;
-        });
-      }
+      q.options.forEach(opt => {
+        let color = "";
+        if (userAns === opt.label && opt.label === correctAns) {
+          color = "green";
+        } else if (userAns === opt.label && opt.label !== correctAns) {
+          color = "red";
+        } else if (userAns !== opt.label && opt.label === correctAns) {
+          color = "green";
+        }
+        html += `<li style="color:${color}">${opt.label}: ${opt.text}</li>`;
+      });
       html += `</ul></li><br>`;
     });
-    html += `</ul><p>Thank you for completing the quiz.</p>`;
-    document.getElementById("result-screen").innerHTML = html;
-}
-    quizSubmitted = true;
-    clearInterval(timerInterval);
-    document.getElementById("quiz-container").style.display = "none";
-    let finalScore = calculateScore();
-    let html = `<h2>Quiz Completed</h2><p>Your score: ${finalScore} / 30</p>`;
-    html += `<h3>Review of Incorrect Answers:</h3><ul>`;
-    selectedQuestions.forEach((q, idx) => {
-      const userAns = userAnswers[q.id];
-      const correctAns = correctAnswers[q.id];
-      if (userAns && userAns !== correctAns) {
-        html += `<li><strong>Q${idx + 1}:</strong> ${q.text}<br>`;
-        html += `Your answer: ${userAns}, Correct: ${correctAns}</li><br>`;
-      }
-    });
+
     html += `</ul><p>Thank you for completing the quiz.</p>`;
     document.getElementById("result-screen").innerHTML = html;
   }
