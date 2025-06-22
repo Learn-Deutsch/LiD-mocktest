@@ -128,7 +128,16 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("quiz-container").style.display = "none";
     let finalScore = calculateScore();
     let html = `<h2>Quiz Completed</h2><p>Your score: ${finalScore} / 30</p>`;
-    html += `<p>Thank you for completing the quiz.</p>`;
+    html += `<h3>Review of Incorrect Answers:</h3><ul>`;
+    selectedQuestions.forEach((q, idx) => {
+      const userAns = userAnswers[q.id];
+      const correctAns = correctAnswers[q.id];
+      if (userAns && userAns !== correctAns) {
+        html += `<li><strong>Q${idx + 1}:</strong> ${q.text}<br>`;
+        html += `Your answer: ${userAns}, Correct: ${correctAns}</li><br>`;
+      }
+    });
+    html += `</ul><p>Thank you for completing the quiz.</p>`;
     document.getElementById("result-screen").innerHTML = html;
   }
 
