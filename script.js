@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function startTimer() {
     const timerDisplay = document.getElementById("timer");
+    clearInterval(timerInterval);
     timerInterval = setInterval(() => {
       if (timeLeft <= 0) {
         clearInterval(timerInterval);
@@ -48,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedAnswer = userAnswers[q.id] || "";
     let html = `<div class="question"><h3>Frage ${currentIndex + 1} von 30</h3>`;
     html += `<p>${q.text}</p>`;
-    if (q.image) html += `<img src="${q.image}" alt="Question Image">`;
+    if (q.image) html += `<img src="${q.image}" alt="Fragebild" style="max-width:100%;height:auto;"><br>`;
     html += `<div class="options">`;
     for (const opt of q.options) {
       const checked = savedAnswer === opt.label ? "checked" : "";
