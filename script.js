@@ -50,27 +50,19 @@ document.addEventListener("DOMContentLoaded", () => {
     let html = `<div class="question"><h3>Frage ${currentIndex + 1} von 30</h3>`;
     html += `<p>${q.text}</p>`;
     if (q.image) html += `<img src="${q.image}" alt="Fragebild" style="max-width:100%;height:auto;"><br>`;
-    html += `<div class="options">`;
+    
+    html += `<div class="options" style="display: flex; flex-direction: column;">`;
+    
     for (const opt of q.options) {
       const checked = savedAnswer === opt.label ? "checked" : "";
       html += `<label><input type="radio" name="q${currentIndex}" value="${opt.label}" ${checked}> ${opt.label}: ${opt.text}</label>`;
     }
-    
     
     html += `</div>`;
     html += `<div class="nav-buttons" style="margin-top: 2em; display: flex; justify-content: space-between; align-items: center;">`;
     html += `<div>`;
     if (currentIndex > 0) html += `<button onclick="goBack()">Back</button>`;
     html += `<button onclick="toggleFlag()">Flag</button>`;
-    html += `<button onclick="submitAnswer()">Next</button>`;
-    html += `</div>`;
-    html += `<div>`;
-    html += `<button onclick="goToReview()">Review Answers</button>`;
-    html += `<button onclick="confirmSubmit()">Submit</button>`;
-    html += `</div>`;
-    
-    html += `<div>`;
-    if (currentIndex > 0) html += `<button onclick="goBack()">Back</button>`;
     html += `<button onclick="submitAnswer()">Next</button>`;
     html += `</div>`;
     html += `<div>`;
