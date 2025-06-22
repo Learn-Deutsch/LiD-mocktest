@@ -128,13 +128,25 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("quiz-container").style.display = "none";
     let finalScore = calculateScore();
     let html = `<h2>Quiz Completed</h2><p>Your score: ${finalScore} / 30</p>`;
-    html += `<h3>Review of Incorrect Answers:</h3><ul>`;
+    html += `<h3>Review of Incorrect Answers:</h3>`;
     selectedQuestions.forEach((q, idx) => {
       const userAns = userAnswers[q.id];
       const correctAns = correctAnswers[q.id];
       if (userAns && userAns !== correctAns) {
         html += `<li><strong>Q${idx + 1}:</strong> ${q.text}<br>`;
-        html += `Your answer: ${userAns}, Correct: ${correctAns}</li><br>`;
+        
+    html += `<ul>`;
+    q.options.forEach(opt => {
+      const isUser = opt.label === userAns;
+      const isCorrect = opt.label === correctAns;
+      let color = "";
+      if (isUser && isCorrect) color = "green";
+      else if (isUser && !isCorrect) color = "red";
+      else if (!isUser && isCorrect) color = "green";
+      html += `<li style="color:${color}">${opt.label}: ${opt.text}</li>`;
+    });
+    html += `</ul></li><br>`;
+    
       }
     });
     html += `</ul><p>Thank you for completing the quiz.</p>`;
