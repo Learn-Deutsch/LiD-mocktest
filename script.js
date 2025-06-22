@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     html += `<div class="options">`;
     for (const opt of q.options) {
       const checked = savedAnswer === opt.label ? "checked" : "";
-      html += `<label><input type="radio" name="q${currentIndex}" value="${opt.label}" ${checked}> ${opt.label}: ${opt.text}</label>`;
+      html += `<label style='display:block; margin: 5px 0;'><input type="radio" name="q${currentIndex}" value="${opt.label}" ${checked}> ${opt.label}: ${opt.text}</label>`;
     }
     html += `</div>`;
     html += `<div class="nav-buttons">`;
@@ -142,7 +142,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+  
   function startTimer() {
+    clearInterval(timerInterval); // prevent duplicates
+    const timerDisplay = document.getElementById("timer");
+    if (!timerDisplay) return;
+    timerDisplay.style.display = "block";
+    timerDisplay.textContent = "Time Left: 30:00";
+
     const timerDisplay = document.getElementById("timer");
     timerInterval = setInterval(() => {
       if (timeLeft <= 0) {
