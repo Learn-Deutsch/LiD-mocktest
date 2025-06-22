@@ -5,8 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedQuestions = [];
   let userAnswers = {};
   let flaggedQuestions = new Set();
+  let quizSubmitted = false;
+
+  
+  let timerInterval;
+  let timeLeft = 1800; // 30 minutes in seconds
 
   function startQuiz() {
+    startTimer();
+
     const username = document.getElementById("username").value.trim();
     if (!username) return alert("Please enter your name");
     document.getElementById("start-screen").style.display = "none";
@@ -25,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showQuestion() {
     const container = document.getElementById("quiz-container");
-    if (currentIndex >= selectedQuestions.length) return finishQuiz();
+    if (quizSubmitted || currentIndex >= selectedQuestions.length) return;
 
     const q = selectedQuestions[currentIndex];
     const savedAnswer = userAnswers[q.id] || "";
@@ -38,9 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
       html += `<label><input type="radio" name="q${currentIndex}" value="${opt.label}" ${checked}> ${opt.label}: ${opt.text}</label>`;
     }
     html += `</div>`;
-    html += `<button onclick="goBack()">Back</button>`;
+    html += `<div class="nav-buttons">`;
+    if (currentIndex > 0) html += `<button onclick="goBack()">Back</button>`;
     html += `<button onclick="toggleFlag()">Flag</button>`;
-    html += `<button onclick="submitAnswer()">Next</button></div>`;
+    html += `<button onclick="goToReview()">Review Answers</button>`;
+    html += `<button onclick="submitAnswer()">Next</button>`;
+    html += `<button onclick="confirmSubmit()">Submit</button>`;
+    html += `</div></div>`;
     container.innerHTML = html;
   }
 
@@ -53,7 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
       userAnswers[qid] = selected;
     }
     currentIndex++;
-    showQuestion();
+    if (currentIndex < selectedQuestions.length) {
+      showQuestion();
+    } else {
+      goToReview();
+    }
   };
 
   window.goBack = function() {
@@ -73,19 +88,20 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Question " + (currentIndex + 1) + (flaggedQuestions.has(qid) ? " flagged." : " unflagged."));
   };
 
-  function finishQuiz() {
+  window.goToReview = function() {
     document.getElementById("quiz-container").style.display = "none";
     document.getElementById("result-screen").style.display = "block";
     showReviewScreen();
-  }
+  };
 
   function showReviewScreen() {
-    let html = `<h2>Review Answers</h2><p>Your score: ${calculateScore()} / 30</p><div class="review-nav">`;
+    let html = `<h2>Review Answers</h2><div class="review-nav">`;
     selectedQuestions.forEach((q, idx) => {
       const flagged = flaggedQuestions.has(q.id);
-      html += `<button onclick="jumpTo(${idx})" style="${flagged ? 'background-color: yellow;' : ''}">Q${idx + 1}</button> `;
+      const userAns = userAnswers[q.id] || "-";
+      html += `<button onclick="jumpTo(${idx})" style="${flagged ? 'background-color: yellow;' : ''}">Q${idx + 1} (${userAns})</button> `;
     });
-    html += `</div>`;
+    html += `</div><br><button onclick="confirmSubmit()">Submit Quiz</button>`;
     document.getElementById("result-screen").innerHTML = html;
   }
 
@@ -95,6 +111,21 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("quiz-container").style.display = "block";
     showQuestion();
   };
+
+  window.confirmSubmit = function() {
+    if (confirm("Are you sure you want to submit the quiz? You will not be able to go back.")) {
+      submitQuiz();
+    }
+  };
+
+  function submitQuiz() {
+    quizSubmitted = true;
+    document.getElementById("quiz-container").style.display = "none";
+    let finalScore = calculateScore();
+    let html = `<h2>Quiz Completed</h2><p>Your score: ${finalScore} / 30</p>`;
+    html += `<p>Thank you for completing the quiz.</p>`;
+    document.getElementById("result-screen").innerHTML = html;
+  }
 
   function calculateScore() {
     let s = 0;
@@ -110,3 +141,19 @@ document.addEventListener("DOMContentLoaded", () => {
     return array.sort(() => Math.random() - 0.5);
   }
 });
+
+  function startTimer() {
+    const timerDisplay = document.getElementById("timer");
+    timerInterval = setInterval(() => {
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        alert("Time is up! Submitting your quiz.");
+        submitQuiz();
+      } else {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerDisplay.textContent = `Time Left: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+        timeLeft--;
+      }
+    }, 1000);
+  }
