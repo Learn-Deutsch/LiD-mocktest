@@ -6,8 +6,9 @@
   <title>Leben in Deutschland Quiz</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
-    #timer { font-weight: bold; margin: 10px; }
+    #timer { font-weight: bold; margin: 10px; display: none; }
     .nav-buttons button { margin-right: 10px; }
+    .options label { display: block; margin: 5px 0; }
   </style>
 </head>
 <body>
@@ -17,7 +18,7 @@
     <button onclick="startQuiz()">Start</button>
   </div>
 
-  <div id="timer" style="display:none;">Time Left: 30:00</div>
+  <div id="timer">Time Left: 30:00</div>
   <div id="quiz-container" style="display:none;"></div>
   <div id="result-screen" style="display:none;"></div>
 
