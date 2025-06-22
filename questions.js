@@ -1578,22 +1578,22 @@ window.questions = [
     "options": [
       {
         "label": "A",
-        "text": "© Deutscher Bundestag/Achim Melde",
-        "image": null
-      },
-      {
-        "label": "B",
         "text": "den Bundestagssitz in Berlin",
         "image": null
       },
       {
-        "label": "C",
+        "label": "B",
         "text": "das Bundesverfassungsgericht in Karlsruhe",
         "image": null
       },
       {
-        "label": "D",
+        "label": "C",
         "text": "das Bundesratsgebäude in Berlin",
+        "image": null
+      },
+      {
+        "label": "D",
+        "text": "das Bundeskanzleramt in Berlin",
         "image": null
       }
     ]
@@ -2015,22 +2015,22 @@ window.questions = [
     "options": [
       {
         "label": "A",
-        "text": "© Bundesregierung/Engelbert Reineke",
-        "image": null
-      },
-      {
-        "label": "B",
         "text": "Sie/Er führt die Regierungsgeschäfte.",
         "image": null
       },
       {
-        "label": "C",
+        "label": "B",
         "text": "Sie/Er kontrolliert die Regierungspartei.",
         "image": null
       },
       {
-        "label": "D",
+        "label": "C",
         "text": "Sie/Er wählt die Ministerinnen/Minister aus.",
+        "image": null
+      },
+      {
+        "label": "D",
+        "text": "Sie/Er schlägt die Kanzlerin/den Kanzler zur Wahl vor.",
         "image": null
       }
     ]
@@ -3757,22 +3757,22 @@ window.questions = [
     "options": [
       {
         "label": "A",
-        "text": "In Anlehnung an Bundeswahlordnung (BWO), Anlage 26",
-        "image": null
-      },
-      {
-        "label": "B",
-        "text": "",
-        "image": null
-      },
-      {
-        "label": "C",
         "text": "1",
         "image": null
       },
       {
-        "label": "D",
+        "label": "B",
         "text": "2",
+        "image": null
+      },
+      {
+        "label": "C",
+        "text": "3",
+        "image": null
+      },
+      {
+        "label": "D",
+        "text": "4",
         "image": null
       }
     ]
@@ -5240,22 +5240,22 @@ window.questions = [
     "options": [
       {
         "label": "A",
-        "text": "© Bundesregierung/Engelbert Reineke",
-        "image": null
-      },
-      {
-        "label": "B",
         "text": "Er hat sich den ehemaligen Alliierten unterworfen.",
         "image": null
       },
       {
-        "label": "C",
+        "label": "B",
         "text": "Er bat Polen und die polnischen Juden um Vergebung.",
         "image": null
       },
       {
-        "label": "D",
+        "label": "C",
         "text": "Er zeigte seine Demut vor dem Warschauer Pakt.",
+        "image": null
+      },
+      {
+        "label": "D",
+        "text": "Er sprach ein Gebet am Grab des Unbekannten Soldaten.",
         "image": null
       }
     ]
@@ -6056,22 +6056,22 @@ window.questions = [
     "options": [
       {
         "label": "A",
-        "text": "",
-        "image": null
-      },
-      {
-        "label": "B",
         "text": "Bild 1",
         "image": null
       },
       {
-        "label": "C",
+        "label": "B",
         "text": "Bild 2",
         "image": null
       },
       {
-        "label": "D",
+        "label": "C",
         "text": "Bild 3",
+        "image": null
+      },
+      {
+        "label": "D",
+        "text": "Bild 4",
         "image": null
       }
     ]
@@ -6261,22 +6261,22 @@ window.questions = [
     "options": [
       {
         "label": "A",
-        "text": "© Deutscher Bundestag/Janine Schmitz",
-        "image": null
-      },
-      {
-        "label": "B",
         "text": "der Bundesadler",
         "image": null
       },
       {
-        "label": "C",
+        "label": "B",
         "text": "die Fahne der Stadt Berlin",
         "image": null
       },
       {
-        "label": "D",
+        "label": "C",
         "text": "der Reichsadler",
+        "image": null
+      },
+      {
+        "label": "D",
+        "text": "die Reichskrone",
         "image": null
       }
     ]
@@ -6816,22 +6816,22 @@ window.questions = [
     "options": [
       {
         "label": "A",
-        "text": "",
+        "text": "Freundschaft zwischen England und Deutschland",
         "image": null
       },
       {
         "label": "B",
-        "text": "",
+        "text": "Reisefreiheit in alle Länder der EU",
         "image": null
       },
       {
         "label": "C",
-        "text": "© Bundesregierung/Richard Schulze-Vorberg",
+        "text": "Frieden und Sicherheit in den Ländern der EU",
         "image": null
       },
       {
         "label": "D",
-        "text": "Freundschaft zwischen England und Deutschland",
+        "text": "einheitliche Feiertage in den Ländern der EU",
         "image": null
       }
     ]
