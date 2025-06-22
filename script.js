@@ -56,7 +56,19 @@ document.addEventListener("DOMContentLoaded", () => {
       html += `<label><input type="radio" name="q${currentIndex}" value="${opt.label}" ${checked}> ${opt.label}: ${opt.text}</label>`;
     }
     
-    html += `</div><br><br><div class="nav-buttons" style="display: flex; justify-content: space-between;">`;
+    
+    html += `</div>`;
+    html += `<div class="nav-buttons" style="margin-top: 2em; display: flex; justify-content: space-between; align-items: center;">`;
+    html += `<div>`;
+    if (currentIndex > 0) html += `<button onclick="goBack()">Back</button>`;
+    html += `<button onclick="toggleFlag()">Flag</button>`;
+    html += `<button onclick="submitAnswer()">Next</button>`;
+    html += `</div>`;
+    html += `<div>`;
+    html += `<button onclick="goToReview()">Review Answers</button>`;
+    html += `<button onclick="confirmSubmit()">Submit</button>`;
+    html += `</div>`;
+    
     html += `<div>`;
     if (currentIndex > 0) html += `<button onclick="goBack()">Back</button>`;
     html += `<button onclick="submitAnswer()">Next</button>`;
